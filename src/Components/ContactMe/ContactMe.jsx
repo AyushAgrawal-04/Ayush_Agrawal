@@ -1,34 +1,34 @@
-import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function Contact() {
   const form = useRef();
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const sendEmail = (e) => {
     e.preventDefault();
     setLoading(true);
     emailjs
       .sendForm(
-        "service_190hdcr",
-        "template_bafi61r",
+        'service_190hdcr',
+        'template_bafi61r',
         form.current,
-        "PUFLDL1B51xBdNbBM"
+        'PUFLDL1B51xBdNbBM',
       )
       .then(
         (result) => {
-          setMessage("Message sent successfully!");
+          setMessage('Message sent successfully!');
           form.current.reset();
           setLoading(false);
         },
         (error) => {
-          setMessage("Failed to send message. Try again!");
+          setMessage('Failed to send message. Try again!');
           console.log(error);
           setLoading(false);
-        }
+        },
       );
   };
 
@@ -80,7 +80,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-xl font-bold text-center text-white mb-6">
-            Drop a message 
+            Drop a message
           </h1>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Your Name</label>
@@ -114,7 +114,7 @@ export default function Contact() {
             className="w-full bg-red-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-600 transition duration-300"
             disabled={loading}
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
           {message && (
             <p className="text-center mt-4 text-green-400">{message}</p>
