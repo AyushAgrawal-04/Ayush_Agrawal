@@ -1,16 +1,81 @@
-# React + Vite
+# Ayush Agrawal — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio showcasing my projects, skills, and experience with smooth animations and a clean UI.
 
-Currently, two official plugins are available:
+🌐 Live: https://ayush-agrawal-eta.vercel.app/
+📁 Repo: https://github.com/AyushAgrawal-04/Portfolio_Website
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend**
 
-## Expanding the ESLint configuration
+* React.js
+* Tailwind CSS
+* Framer Motion
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Libraries & Tools**
+
+* React Scroll
+* React Icons
+* EmailJS
+
+---
+
+## Features
+
+* Responsive design (mobile-first)
+* Smooth scroll navigation
+* Animated project showcase
+* Interactive timeline & skills section
+* EmailJS contact form
+* Resume view & download
+
+---
+
+## Run Locally
+
+```bash
+git clone https://github.com/AyushAgrawal-04/Portfolio_Website.git
+cd Portfolio_Website
+npm install
+npm run dev
+```
+
+---
+
+## EmailJS Setup
+
+Create a template with:
+
+```
+{{user_name}}
+{{user_email}}
+{{message}}
+```
+
+Then add your credentials in `Contact.jsx`.
+
+---
+
+## Customize
+
+Edit content in:
+
+* `Projects.jsx`
+* `QualificationSection.jsx`
+* `SkillsSection.jsx`
+* `/public` (images & resume)
+
+---
+
+## Author
+
+Ayush Agrawal
+LinkedIn: https://linkedin.com/in/ayush-agrawal-75658a229
+GitHub: https://github.com/AyushAgrawal-04
+
+---
+
+MIT License
