@@ -1,37 +1,37 @@
 import { useEffect, useState } from "react";
-import styles from "./Loading.module.css"
+import styles from "./Loading.module.css";
 
-function Loading({onComplete}) {
-  const [text, setText] = useState("");
+function Loading({ onComplete }) {
   const fullText = "ayushAgrawal";
+  const [text, setText] = useState("");
 
   useEffect(() => {
     let index = 0;
 
-    const interval = setInterval(() => {
-      setText(fullText.substring(0, index));
+    const typingInterval = setInterval(() => {
+      setText(fullText.slice(0, index + 1));
       index++;
 
-      if (index > fullText.length) {
-        clearInterval(interval);
+      if (index === fullText.length) {
+        clearInterval(typingInterval);
 
+        // pause before finishing
         setTimeout(() => {
           onComplete();
-        }, 1000);
+        }, 700);
       }
-    }, 100);
+    }, 90);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(typingInterval);
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-col justify-center items-center">
-      <div className="mb-4 text-4xl text-red-500 font-bold">
-        <div className={`${styles.neonderthaw}`}>
-       &lt;<span>{text}</span>/&gt;
-       </div>
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
+      <div className="text-4xl sm:text-5xl font-bold text-red-500 tracking-wider">
+        <div className={styles.neonderthaw}>
+          &lt;<span>{text}</span>/&gt;
+        </div>
       </div>
-
     </div>
   );
 }

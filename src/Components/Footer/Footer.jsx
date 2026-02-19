@@ -1,13 +1,16 @@
-import React from 'react'
-import styles from "./Footer.module.css"
+import React from "react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
-  return (
-    <div className={styles.footer}
->
-  © 2025 Ayush Agrawal. All rights reserved.
-</div>
-  )
-}
+  const year = new Date().getFullYear();
 
-export default Footer
+  return (
+    <footer className={`${styles.footer} py-6 text-center`}>
+      <p className="text-sm sm:text-base opacity-80">
+        © {year} <span className="font-semibold">Ayush Agrawal</span>. All rights reserved.
+      </p>
+    </footer>
+  );
+};
+
+export default Footer;

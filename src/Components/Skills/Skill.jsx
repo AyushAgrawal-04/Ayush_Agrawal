@@ -1,18 +1,39 @@
 import { motion } from "framer-motion";
 import {
-  FaReact, FaBootstrap, FaNodeJs, FaPython, FaJava, FaDatabase, FaGitAlt, FaAws, FaLinux,
-  FaWindows, FaJs, FaFlask
+  FaReact,
+  FaBootstrap,
+  FaNodeJs,
+  FaPython,
+  FaJava,
+  FaDatabase,
+  FaGitAlt,
+  FaAws,
+  FaLinux,
+  FaJs,
 } from "react-icons/fa";
-import { SiTailwindcss, SiExpress, SiMongodb, SiMysql, SiPytorch, SiScikitlearn, 
-  SiKeras, SiPostman, SiOpencv, SiTypescript, SiRedux, SiPostgresql } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiPytorch,
+  SiScikitlearn,
+  SiKeras,
+  SiPostman,
+  SiOpencv,
+  SiRedux,
+  SiPostgresql,
+} from "react-icons/si";
+
+/* ================= SKILLS DATA ================= */
 
 const skills = [
   {
     category: "Languages",
     items: [
-      { name: "C++", icon: <img src="/images/icons8-c++-48.png" className="h-8" /> },
-      { name: "Python", icon: <FaPython className="text-yellow-500" /> },
-      { name: "SQL", icon: <FaDatabase className="text-blue-600" /> },
+      { name: "C++", icon: <img src="/images/icons8-c++-48.png" className="h-7" /> },
+      { name: "Python", icon: <FaPython className="text-yellow-400" /> },
+      { name: "SQL", icon: <FaDatabase className="text-blue-500" /> },
       { name: "Java", icon: <FaJava className="text-red-500" /> },
       { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
     ],
@@ -22,8 +43,8 @@ const skills = [
     items: [
       { name: "React", icon: <FaReact className="text-blue-400" /> },
       { name: "Bootstrap", icon: <FaBootstrap className="text-purple-500" /> },
-      { name: "Vite", icon: <img src="/images/icons8-vite-50.png" className="h-8" /> },
-      { name: "TailwindCSS", icon: <SiTailwindcss className="text-cyan-500" /> },
+      { name: "Vite", icon: <img src="/images/icons8-vite-50.png" className="h-7" /> },
+      { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" /> },
       { name: "Redux", icon: <SiRedux className="text-purple-500" /> },
     ],
   },
@@ -31,73 +52,86 @@ const skills = [
     category: "Backend",
     items: [
       { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-      { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
-      { name: "Flask", icon: <img src="/images/icons8-flask-64.png" className="h-8" /> },
+      { name: "Express", icon: <SiExpress className="text-gray-400" /> },
+      { name: "Flask", icon: <img src="/images/icons8-flask-64.png" className="h-7" /> },
     ],
   },
   {
     category: "Database",
     items: [
-      { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
+      { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
       { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
-      { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-600" /> },
+      { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-400" /> },
     ],
   },
   {
-    category: "AI/ML",
+    category: "AI / ML",
     items: [
       { name: "PyTorch", icon: <SiPytorch className="text-orange-500" /> },
-      { name: "Scikit-learn", icon: <SiScikitlearn className="text-blue-500" /> },
+      { name: "Scikit-learn", icon: <SiScikitlearn className="text-blue-400" /> },
       { name: "Keras", icon: <SiKeras className="text-red-500" /> },
-      { name: "Computer Vision", icon: <SiOpencv className="text-gray-500" /> },
-      { name: "YOLO", icon: <img src="/images/icons8-yolo-48.png" alt="yolo" className="h-8" /> },
+      { name: "OpenCV", icon: <SiOpencv className="text-gray-400" /> },
+      { name: "YOLO", icon: <img src="/images/icons8-yolo-48.png" className="h-7" /> },
     ],
   },
   {
     category: "Tools",
     items: [
       { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
-      { name: "AWS", icon: <FaAws className="text-yellow-600" /> },
+      { name: "AWS", icon: <FaAws className="text-yellow-500" /> },
       { name: "Postman", icon: <SiPostman className="text-orange-500" /> },
-      { name: "REST API", icon: <FaDatabase className="text-gray-500" /> },
-      { name: "Linux", icon: <FaLinux className="text-gray-600" /> },
+      { name: "REST API", icon: <FaDatabase className="text-gray-400" /> },
+      { name: "Linux", icon: <FaLinux className="text-gray-400" /> },
     ],
   },
 ];
 
+/* ================= COMPONENT ================= */
+
 export default function SkillsSection() {
   return (
-    <section id="skills" className="bg-red-900 h-fit text-white py-10 px-6 flex flex-col items-center">
+    <section
+      id="skills"
+      className="bg-red-900 text-white py-16 px-6 flex flex-col items-center"
+    >
+      {/* TITLE */}
       <motion.h2
-      initial={{ opacity: 0, y: -20}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration: 0.5, ease: "easeOut"}}
-      className="text-3xl font-bold text-center text-white mb-6">
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl font-bold mb-10"
+      >
         My Tech Stack
       </motion.h2>
-      <div className="px-4 w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      {/* GRID */}
+      <div className="w-full max-w-6xl grid gap-8 md:grid-cols-2">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
-            className="bg-black p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 hover:scale-120"
-            initial={{ opacity: 0, y: -40, scale: 0.8 }}  
-            whileInView={{ opacity: 1, y: 0, scale: 0.8 }}
-            transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.15 }}
+            className="bg-black/90 p-6 rounded-xl shadow-lg"
           >
-            <h3 className="text-xl font-semibold mb-4 text-blue-400">
+            <h3 className="text-xl font-semibold mb-5 text-red-400">
               {skill.category}
             </h3>
-            <div className="flex flex-wrap gap-4 justify-end">
+
+            <div className="flex flex-wrap gap-4">
               {skill.items.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{y:0}}
-                  whileHover={{y: -20}}
-                  transition={{ delay: 0, duration: 0.2, ease: "linear"}}
-                  className="flex flex-col items-center justify-end gap-2 scale-80 md:scale-100 bg-black px-4 py-2 rounded-lg border-b-1 hover:border-1 hover:shadow-[0_0_13px_#ffffff] border-white duration-300"
+                  whileHover={{ y: -6, scale: 1.05 }}
+                  className="flex flex-col items-center justify-center
+                  gap-1 px-4 py-3 rounded-lg border border-white/20
+                  bg-black hover:border-white hover:shadow-[0_0_12px_rgba(255,255,255,0.6)]
+                  transition"
                 >
                   <span className="text-2xl">{item.icon}</span>
-                  <span className="text-white">{item.name}</span>
+                  <span className="text-xs sm:text-sm">{item.name}</span>
                 </motion.div>
               ))}
             </div>

@@ -1,41 +1,45 @@
-import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Contact() {
-  const form = useRef();
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const formRef = useRef(null);
 
-  const sendEmail = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const sendEmail = async (e) => {
     e.preventDefault();
+
+    if (loading) return;
+
     setLoading(true);
-    emailjs
-      .sendForm(
-        'service_190hdcr',
-        'template_bafi61r',
-        form.current,
-        'PUFLDL1B51xBdNbBM',
-      )
-      .then(
-        (result) => {
-          setMessage('Message sent successfully!');
-          form.current.reset();
-          setLoading(false);
-        },
-        (error) => {
-          setMessage('Failed to send message. Try again!');
-          console.log(error);
-          setLoading(false);
-        },
+    setStatus("");
+
+    try {
+      await emailjs.sendForm(
+        "service_190hdcr",
+        "template_bafi61r",
+        formRef.current,
+        "PUFLDL1B51xBdNbBM"
       );
+
+      setStatus("Message sent successfully!");
+      formRef.current.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("Failed to send message. Please try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
-    <section id="contact" className="bg-red-900 text-white py-12 px-6">
+    <section id="contact" className="bg-red-900 text-white py-16 px-6">
+      {/* SECTION TITLE */}
       <motion.h2
-        className="text-3xl font-bold text-center text-white mb-6"
+        className="text-3xl sm:text-4xl font-bold text-center mb-10"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -43,81 +47,118 @@ export default function Contact() {
         Contact Me
       </motion.h2>
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
-        {/* Contact Info */}
+      <div className="max-w-5xl mx-auto grid gap-8 md:grid-cols-2">
+        {/* CONTACT INFO */}
         <motion.div
-          className="bg-black p-6 rounded-lg shadow-l"
-          initial={{ opacity: 0, x: -50 }}
+          className="bg-black/90 p-7 rounded-xl shadow-lg"
+          initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-xl font-semibold mb-4 text-white">
-            Get In Touch
-          </h3>
-          <p className="mb-4">
-            Feel free to reach out for any collaboration or inquiries.
+          <h3 className="text-xl font-semibold mb-4">Get In Touch</h3>
+
+          <p className="text-gray-300 mb-6 leading-relaxed">
+            Feel free to reach out for collaboration, freelance work, or just a
+            friendly hello 👋
           </p>
-          <div className="flex items-center gap-3 mb-4">
-            <FaEnvelope className="text-red-500 text-xl" />
-            <span>ayushmagrawal.76@gmail.com</span>
-          </div>
-          <div className="flex items-center gap-3 mb-4">
-            <FaPhone className="text-red-500 text-xl" />
-            <span>+91 76669-72175</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <FaMapMarkerAlt className="text-red-500 text-xl" />
-            <span>Pune, Maharashtra</span>
+
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <FaEnvelope className="text-red-500 text-lg" />
+              <span className="break-all">
+                ayushmagrawal.76@gmail.com
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaPhone className="text-red-500 text-lg" />
+              <span>+91 76669 72175</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-red-500 text-lg" />
+              <span>Pune, Maharashtra</span>
+            </div>
           </div>
         </motion.div>
-        {/* Contact Form */}
+
+        {/* CONTACT FORM */}
         <motion.form
-          ref={form}
+          ref={formRef}
           onSubmit={sendEmail}
-          className="bg-black p-6 rounded-lg shadow-lg"
-          initial={{ opacity: 0, x: 50 }}
+          className="bg-black/90 p-7 rounded-xl shadow-lg"
+          initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-xl font-bold text-center text-white mb-6">
-            Drop a message
-          </h1>
+          <h3 className="text-xl font-semibold text-center mb-6">
+            Drop a Message
+          </h3>
+
+          {/* NAME */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Your Name</label>
+            <label className="block text-sm mb-2">Your Name</label>
             <input
               type="text"
               name="user_name"
               required
-              className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-400 text-white"
+              placeholder="Enter your name"
+              className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700
+              focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500
+              text-white transition"
             />
           </div>
+
+          {/* EMAIL */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Your Email</label>
+            <label className="block text-sm mb-2">Your Email</label>
             <input
               type="email"
               name="user_email"
               required
-              className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-400 text-white"
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700
+              focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500
+              text-white transition"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Message</label>
+
+          {/* MESSAGE */}
+          <div className="mb-6">
+            <label className="block text-sm mb-2">Message</label>
             <textarea
               name="message"
               required
               rows="4"
-              className="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-400 text-white"
+              placeholder="Write your message..."
+              className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700
+              focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500
+              text-white transition resize-none"
             ></textarea>
           </div>
+
+          {/* SUBMIT BUTTON */}
           <button
             type="submit"
-            className="w-full bg-red-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-600 transition duration-300"
             disabled={loading}
+            className="w-full py-3 rounded-lg font-semibold bg-red-500
+            hover:bg-red-600 active:scale-95 transition
+            disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? 'Sending...' : 'Send Message'}
+            {loading ? "Sending..." : "Send Message"}
           </button>
-          {message && (
-            <p className="text-center mt-4 text-green-400">{message}</p>
+
+          {/* STATUS MESSAGE */}
+          {status && (
+            <p
+              className={`text-center mt-4 text-sm ${
+                status.includes("success")
+                  ? "text-green-400"
+                  : "text-red-400"
+              }`}
+            >
+              {status}
+            </p>
           )}
         </motion.form>
       </div>
