@@ -1,9 +1,9 @@
 # Ayush Agrawal — Portfolio
 
-A modern, responsive portfolio showcasing my projects, skills, and experience with smooth animations and a clean UI.
+A modern, responsive portfolio showcasing my projects, skills, and experience with smooth animations and a clean UI.  
 
-* 🌐 Live: https://ayush-agrawal-eta.vercel.app/
-* 📁 Repo: https://github.com/AyushAgrawal-04/Ayush_Agrawal.git
+🌐 Live: https://ayush-agrawal-eta.vercel.app/  
+📁 Repo: https://github.com/AyushAgrawal-04/Ayush_Agrawal.git
 
 ---
 
