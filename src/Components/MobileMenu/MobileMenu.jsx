@@ -1,70 +1,83 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 
+const sections = [
+  "home",
+  "projects",
+  "qualifications",
+  "skills",
+  "contact",
+];
+
 function MobileMenu({ menuOpen, setMenuOpen }) {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = [
-        "home",
-        "skills",
-        "qualifications",
-        "projects",
-        "contact",
-      ];
-      sections.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section) {
-          const { top, height } = section.getBoundingClientRect();
-          if (top < window.innerHeight / 2 && top + height > 0) {
-            setActiveSection(id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
           }
-        }
-      });
-    };
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
+
+  
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [menuOpen]);
+
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-black z-40 flex flex-col justify-center items-center transition duration-300 ease-in-out ${
-        menuOpen
-          ? "h-screen opacity-100 pointer-events-auto"
-          : "h-0 opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center items-center transition-all duration-300 ease-in-out
+      ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}
     >
+      {/* Close Button */}
       <button
+        aria-label="Close menu"
         onClick={() => setMenuOpen(false)}
-        className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer"
+        className="absolute top-6 right-6 text-white text-4xl cursor-pointer hover:text-red-500 transition"
       >
         &times;
       </button>
-      <ul className="flex flex-col items-center space-y-6">
-        {["home", "skills", "qualifications", "projects", "contact"].map(
-          (section) => (
-            <li key={section}>
-              <Link
-                to={section}
-                smooth={true}
-                duration={500}
-                onClick={() => setMenuOpen(false)}
-                className={`cursor-pointer text-lg font-bold border-b-2 transition-transform ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                } ${
+
+      {/* Menu Links */}
+      <ul className="flex flex-col items-center space-y-8">
+        {sections.map((section) => (
+          <li key={section}>
+            <Link
+              to={section}
+              smooth={true}
+              duration={500}
+              offset={-70}
+              onClick={() => setMenuOpen(false)}
+              className={`cursor-pointer text-2xl font-bold tracking-wide transition-all duration-300
+                ${
                   activeSection === section
-                    ? "text-red-500 border-red-500"
-                    : "hover:border-red-500 border-transparent"
-                } `}
-              >
-                {section.toUpperCase()}
-              </Link>
-            </li>
-          )
-        )}
+                    ? "text-red-500 scale-110"
+                    : "text-white hover:text-red-400"
+                }`}
+            >
+              {section.toUpperCase()}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

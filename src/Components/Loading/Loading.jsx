@@ -3,7 +3,7 @@ import styles from "./Loading.module.css"
 
 function Loading({onComplete}) {
   const [text, setText] = useState("");
-  const fullText = "Ayush Agrawal";
+  const fullText = "ayushAgrawal";
 
   useEffect(() => {
     let index = 0;
@@ -27,8 +27,8 @@ function Loading({onComplete}) {
   return (
     <div className="fixed inset-0 z-50 bg-black flex flex-col justify-center items-center">
       <div className="mb-4 text-4xl text-red-500 font-bold">
-        <div className={`${styles.mrs}`}>
-       &lt; <span>{text}</span> /&gt;
+        <div className={`${styles.neonderthaw}`}>
+       &lt;<span>{text}</span>/&gt;
        </div>
       </div>
 

@@ -40,7 +40,7 @@ const Hero = () => {
         <h3
           className={`text-3xl md:text-3xl font-semibold mt-4 hover:scale-110 transition duration-600 hover:drop-shadow-[0_0_10px_#ffffff] ${styles.mrs} `}
         >
-          &lt; <span className={`${styles.mrs}`}> Ayush Agrawal </span> /&gt;
+          &lt; <span className={`${styles.mrs}`}> Ayush  Agrawal </span> /&gt;
         </h3>
       </motion.div>
       <div className="md:w-1/2 text-center md:text-left mt-6 md:mt-0 ">

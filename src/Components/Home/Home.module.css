@@ -1,9 +1,11 @@
 @import "tailwindcss";
 .mrs {
-  font-family: "Mrs Saint Delafield", cursive;
-  font-weight: 500;
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: 100;
   font-style: normal;
-  font-size: 45px;
+  font-size: 30px;
+  margin-top: 28px;
 }
 
 
